@@ -1,0 +1,71 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 80;
+  width: 100%;
+  height: var(--header-height);
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid rgba(232, 232, 232, 0.78);
+  backdrop-filter: blur(16px);
+}
+
+.inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 var(--page-gutter);
+}
+
+.backAction {
+  position: absolute;
+  left: var(--page-gutter);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.logoLink {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logoLink img {
+  width: 100%;
+  height: auto;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.cartWrap {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+}
+
+.cartStar {
+  position: absolute;
+  top: -11px;
+  right: -12px;
+  width: 22px;
+  height: auto;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .backAction {
+    left: 12px;
+  }
+}

@@ -1,0 +1,72 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  pointer-events: none;
+  animation: preloaderExit 720ms var(--ease-out) 3020ms forwards;
+}
+
+.mark {
+  grid-area: 1 / 1;
+  display: block;
+  object-fit: contain;
+  opacity: 0;
+  filter: brightness(0) saturate(100%);
+  transform-origin: center;
+  will-change: opacity, transform;
+}
+
+.logoMark {
+  width: clamp(108px, 16vw, 176px);
+  height: auto;
+  animation: markPop 1280ms cubic-bezier(0.18, 1.18, 0.4, 1) forwards;
+}
+
+.starMark {
+  width: clamp(78px, 12vw, 132px);
+  height: auto;
+  animation: markPop 1280ms cubic-bezier(0.18, 1.18, 0.4, 1) 1360ms forwards;
+}
+
+@keyframes markPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+
+  34% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  72% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes preloaderExit {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader {
+    animation-duration: 240ms;
+    animation-delay: 760ms;
+  }
+
+  .mark {
+    animation-duration: 440ms;
+    animation-delay: 0ms;
+  }
+}

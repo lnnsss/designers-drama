@@ -1,0 +1,139 @@
+.gallery {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  gap: clamp(14px, 2vw, 24px);
+  align-items: start;
+}
+
+.viewer {
+  position: sticky;
+  top: calc(var(--header-height) + 34px);
+  grid-column: 2;
+  aspect-ratio: 4 / 5;
+  max-height: calc(100vh - var(--header-height) - 68px);
+  overflow: hidden;
+  border: 0;
+  background: var(--color-soft);
+  padding: 0;
+}
+
+.activeImage {
+  position: absolute;
+  inset: 0;
+}
+
+.viewer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: zoom-in;
+  transition: transform 520ms var(--ease-out);
+}
+
+.viewer:hover img {
+  transform: scale(1.075);
+}
+
+.thumbnails {
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  gap: 10px;
+}
+
+.thumbnails button {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid transparent;
+  background: var(--color-soft);
+  padding: 0;
+  opacity: 0.52;
+  transition:
+    opacity 220ms var(--ease-out),
+    border-color 220ms var(--ease-out);
+}
+
+.thumbnails button:hover,
+.thumbnails .active {
+  border-color: transparent;
+  opacity: 1;
+}
+
+.thumbnails img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  display: grid;
+  place-items: center;
+  padding: clamp(18px, 4vw, 64px);
+}
+
+.lightboxBackdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.lightboxImage {
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 960px);
+  height: min(88vh, 1200px);
+  background: var(--color-soft);
+}
+
+.lightboxImage img {
+  object-fit: contain;
+}
+
+.lightboxClose {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 2;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 220ms var(--ease-out);
+}
+
+.lightboxClose:hover {
+  color: var(--color-accent);
+}
+
+@media (max-width: 920px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .viewer {
+    position: relative;
+    top: auto;
+    grid-column: 1;
+  }
+
+  .thumbnails {
+    grid-column: 1;
+    grid-row: auto;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 8px;
+  }
+}
+
+@media (max-width: 520px) {
+  .thumbnails {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

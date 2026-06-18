@@ -1,0 +1,40 @@
+.footer {
+  display: grid;
+  place-items: center;
+  gap: 20px;
+  min-height: 138px;
+  padding: 34px var(--page-gutter);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-align: center;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  color: var(--color-text);
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.socials a {
+  transition: color 220ms var(--ease-out);
+}
+
+.socials a:hover {
+  color: var(--color-accent);
+}
+
+.rights {
+  margin: 0;
+  font-size: 9px;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}

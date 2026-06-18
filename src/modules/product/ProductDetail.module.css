@@ -1,0 +1,110 @@
+.product {
+  display: grid;
+  grid-template-columns: minmax(0, 0.64fr) minmax(320px, 0.36fr);
+  gap: clamp(34px, 4vw, 64px);
+  min-height: 100vh;
+  padding: calc(var(--header-height) + 34px) var(--page-gutter) 96px;
+}
+
+.panel {
+  position: sticky;
+  top: calc(var(--header-height) + 34px);
+  align-self: start;
+  display: grid;
+  gap: 34px;
+  padding-top: 18px;
+}
+
+.category {
+  margin: 0 0 18px;
+  color: var(--color-muted);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.panel h1 {
+  margin: 0;
+  font-size: clamp(38px, 5vw, 72px);
+  font-weight: 520;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.price {
+  margin: 20px 0 0;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sizes button {
+  min-width: 50px;
+  height: 44px;
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+  color: var(--color-text);
+  font-size: 12px;
+  transition:
+    background 240ms var(--ease-out),
+    color 240ms var(--ease-out),
+    border-color 240ms var(--ease-out);
+}
+
+.sizes button:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.sizes .activeSize,
+.sizes .activeSize:hover {
+  border-color: var(--color-text);
+  background: var(--color-text);
+  color: #ffffff;
+}
+
+.description {
+  max-width: 430px;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.72;
+}
+
+.addButton {
+  width: 100%;
+  min-height: 58px;
+  border: 1px solid var(--color-text);
+  background: var(--color-text);
+  color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  transition:
+    background 260ms var(--ease-out),
+    color 260ms var(--ease-out);
+}
+
+.addButton:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+@media (max-width: 920px) {
+  .product {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    position: static;
+    max-width: 640px;
+    padding-top: 0;
+  }
+}
