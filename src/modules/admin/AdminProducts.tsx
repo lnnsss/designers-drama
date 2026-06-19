@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState, type ChangeEvent, type FormEvent } from "react";
 import type { User } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/client";
-import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { getAdminRedirectUrl, isSupabaseConfigured } from "@/lib/supabase/config";
 import { formatPrice } from "@/lib/formatPrice";
 import styles from "./AdminProducts.module.css";
 
@@ -202,7 +202,7 @@ export function AdminProducts() {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${window.location.origin}/admin`
+        emailRedirectTo: getAdminRedirectUrl(window.location.origin)
       }
     });
     setIsLoading(false);

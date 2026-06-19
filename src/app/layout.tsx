@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer/Footer";
 import { CartDrawer } from "@/components/CartDrawer/CartDrawer";
 import { Preloader } from "@/components/Preloader/Preloader";
 import { CartProvider } from "@/hooks/useCart";
+import { configuredSiteUrl } from "@/lib/supabase/config";
 import "@/styles/globals.css";
 
 const interDisplay = Inter({
@@ -14,7 +15,7 @@ const interDisplay = Inter({
   variable: "--font-inter-display"
 });
 
-const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://designers-drama.ru");
+const siteUrl = new URL(configuredSiteUrl || "https://designers-drama.ru");
 const siteDescription =
   "Minimal designer fashion store with bold accessories, objects, and everyday pieces by Designers Drama.";
 
