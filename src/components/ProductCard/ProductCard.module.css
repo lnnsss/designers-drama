@@ -13,6 +13,20 @@
   background: var(--color-soft);
 }
 
+.badge {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 2;
+  background: var(--color-accent);
+  color: #ffffff;
+  padding: 7px 9px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .media img {
   position: absolute;
   inset: 0;

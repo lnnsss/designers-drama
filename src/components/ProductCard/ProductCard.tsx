@@ -14,6 +14,7 @@ type ProductCardProps = {
 
 export function ProductCard({ product, priority = false }: ProductCardProps) {
   const hasHoverImage = product.images.length > 1;
+  const isOutOfStock = product.stock < 1;
 
   return (
     <motion.article
@@ -28,6 +29,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           {hasHoverImage && (
             <Image className={styles.imageSecondary} src={product.images[1]} alt="" fill sizes="(max-width: 760px) 50vw, (max-width: 1120px) 33vw, 25vw" aria-hidden="true" />
           )}
+          {isOutOfStock && <span className={styles.badge}>Out of stock</span>}
         </motion.div>
         <div className={styles.meta}>
           <h2>{product.title}</h2>

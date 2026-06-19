@@ -37,6 +37,15 @@
   letter-spacing: -0.02em;
 }
 
+.stockStatus {
+  margin: 14px 0 0;
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .sizes {
   display: flex;
   flex-wrap: wrap;
@@ -95,6 +104,14 @@
   border-color: var(--color-accent);
   background: var(--color-accent);
   color: #ffffff;
+}
+
+.addButton:disabled,
+.addButton:disabled:hover {
+  border-color: var(--color-border);
+  background: var(--color-soft);
+  color: var(--color-muted);
+  cursor: not-allowed;
 }
 
 @media (max-width: 920px) {

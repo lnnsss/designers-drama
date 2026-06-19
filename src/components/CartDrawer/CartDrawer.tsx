@@ -10,6 +10,9 @@ import styles from "./CartDrawer.module.css";
 
 export function CartDrawer() {
   const { items, isCartOpen, closeCart, total, updateQuantity, removeItem } = useCart();
+  const hasStockIssues = items.some(
+    (item) => item.product.stock < 1 || item.quantity > item.product.stock
+  );
 
   return (
     <AnimatePresence>
@@ -45,55 +48,75 @@ export function CartDrawer() {
               <p className={styles.empty}>Your cart is empty.</p>
             ) : (
               <div className={styles.items}>
-                {items.map((item) => (
-                  <article key={`${item.product.id}-${item.size}`} className={styles.item}>
-                    <div className={styles.itemImage}>
-                      <Image src={item.product.images[0]} alt={item.product.title} fill sizes="92px" />
-                    </div>
-                    <div className={styles.itemInfo}>
-                      <div>
-                        <h3>{item.product.title}</h3>
-                        <p>
-                          {item.size} / {formatPrice(item.product.price)}
-                        </p>
-                      </div>
+                {items.map((item) => {
+                  const isOutOfStock = item.product.stock < 1;
+                  const isOverStock = item.quantity > item.product.stock;
+                  const cannotIncrease = item.quantity >= item.product.stock;
 
-                      <div className={styles.controls}>
-                        <button
-                          type="button"
-                          onClick={() => updateQuantity(item.product.id, item.size, item.quantity - 1)}
-                          aria-label={`Decrease ${item.product.title} quantity`}
-                        >
-                          -
-                        </button>
-                        <span>{item.quantity}</span>
-                        <button
-                          type="button"
-                          onClick={() => updateQuantity(item.product.id, item.size, item.quantity + 1)}
-                          aria-label={`Increase ${item.product.title} quantity`}
-                        >
-                          +
-                        </button>
-                        <button
-                          type="button"
-                          className={styles.remove}
-                          onClick={() => removeItem(item.product.id, item.size)}
-                        >
-                          Remove
-                        </button>
+                  return (
+                    <article key={`${item.product.id}-${item.size}`} className={styles.item}>
+                      <div className={styles.itemImage}>
+                        <Image src={item.product.images[0]} alt={item.product.title} fill sizes="92px" />
                       </div>
-                    </div>
-                  </article>
-                ))}
+                      <div className={styles.itemInfo}>
+                        <div>
+                          <h3>{item.product.title}</h3>
+                          <p>
+                            {item.size} / {formatPrice(item.product.price)}
+                          </p>
+                          {isOutOfStock && <p className={styles.stockWarning}>Out of stock</p>}
+                          {isOverStock && (
+                            <p className={styles.stockWarning}>
+                              Only {item.product.stock} left in stock
+                            </p>
+                          )}
+                        </div>
+
+                        <div className={styles.controls}>
+                          <button
+                            type="button"
+                            onClick={() => updateQuantity(item.product.id, item.size, item.quantity - 1)}
+                            aria-label={`Decrease ${item.product.title} quantity`}
+                          >
+                            -
+                          </button>
+                          <span>{item.quantity}</span>
+                          <button
+                            type="button"
+                            onClick={() => updateQuantity(item.product.id, item.size, item.quantity + 1)}
+                            aria-label={`Increase ${item.product.title} quantity`}
+                            disabled={cannotIncrease}
+                          >
+                            +
+                          </button>
+                          <button
+                            type="button"
+                            className={styles.remove}
+                            onClick={() => removeItem(item.product.id, item.size)}
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             )}
 
             <div className={styles.summary}>
+              {hasStockIssues && (
+                <p className={styles.checkoutWarning}>
+                  Update your cart before checkout. Some items are out of stock or exceed available stock.
+                </p>
+              )}
               <div>
                 <span>Total</span>
                 <strong>{formatPrice(total)}</strong>
               </div>
-              <button type="button">Checkout</button>
+              <button type="button" disabled={items.length === 0 || hasStockIssues}>
+                Checkout
+              </button>
             </div>
           </motion.aside>
         </>

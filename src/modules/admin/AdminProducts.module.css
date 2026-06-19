@@ -130,7 +130,6 @@
 }
 
 .list button:hover,
-.activeProduct,
 .form button:hover,
 .loginForm button:hover,
 .header button:hover,
@@ -139,6 +138,17 @@
 .loginPanel button:hover {
   border-color: var(--color-text);
   background: var(--color-text);
+  color: #ffffff;
+}
+
+.activeProduct,
+.activeProduct:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.list .activeProduct small {
   color: #ffffff;
 }
 

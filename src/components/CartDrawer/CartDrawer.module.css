@@ -87,6 +87,12 @@
   color: var(--color-muted);
 }
 
+.itemInfo .stockWarning,
+.checkoutWarning {
+  color: var(--color-accent);
+  font-weight: 800;
+}
+
 .controls {
   display: flex;
   align-items: center;
@@ -108,6 +114,14 @@
 .controls button:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
+}
+
+.controls button:disabled,
+.controls button:disabled:hover {
+  border-color: var(--color-border);
+  color: var(--color-muted);
+  cursor: not-allowed;
+  opacity: 0.48;
 }
 
 .controls .remove {
@@ -140,6 +154,12 @@
   font-weight: 500;
 }
 
+.checkoutWarning {
+  margin: 0 0 16px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
 .summary button {
   width: 100%;
   min-height: 54px;
@@ -157,6 +177,14 @@
 .summary button:hover {
   border-color: var(--color-accent);
   background: var(--color-accent);
+}
+
+.summary button:disabled,
+.summary button:disabled:hover {
+  border-color: var(--color-border);
+  background: var(--color-soft);
+  color: var(--color-muted);
+  cursor: not-allowed;
 }
 
 @media (max-width: 520px) {

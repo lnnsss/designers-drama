@@ -11,6 +11,7 @@ import styles from "./ProductDetail.module.css";
 export function ProductDetail({ product }: { product: Product }) {
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const { addItem } = useCart();
+  const isOutOfStock = product.stock < 1;
 
   return (
     <section className={styles.product}>
@@ -26,6 +27,7 @@ export function ProductDetail({ product }: { product: Product }) {
           <p className={styles.category}>{product.category}</p>
           <h1>{product.title}</h1>
           <p className={styles.price}>{formatPrice(product.price)}</p>
+          {isOutOfStock && <p className={styles.stockStatus}>Out of stock</p>}
         </div>
 
         <div className={styles.sizes} aria-label="Select size">
@@ -43,8 +45,13 @@ export function ProductDetail({ product }: { product: Product }) {
 
         <p className={styles.description}>{product.description}</p>
 
-        <button className={styles.addButton} type="button" onClick={() => addItem(product, selectedSize)}>
-          Add to Cart
+        <button
+          className={styles.addButton}
+          type="button"
+          onClick={() => addItem(product, selectedSize)}
+          disabled={isOutOfStock}
+        >
+          {isOutOfStock ? "Out of stock" : "Add to Cart"}
         </button>
       </motion.aside>
     </section>
