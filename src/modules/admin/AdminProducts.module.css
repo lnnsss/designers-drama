@@ -141,8 +141,8 @@
   color: #ffffff;
 }
 
-.activeProduct,
-.activeProduct:hover {
+.list button.activeProduct,
+.list button.activeProduct:hover {
   border-color: var(--color-accent);
   background: var(--color-accent);
   color: #ffffff;
